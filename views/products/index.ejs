@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate') -%>
+
+<section class="container my-5">
+  <%- include('../partials/flash') %> 
+  
+  <section id="heading" class="mb-3" style="margin-top: 0%;">
+    <h4 class="display-4" style="font-weight: 700;"><i class="fa-brands fa-shopify"></i>&nbsp;Shop Now</h4>
+  </section>
+  
+  <div class="carousel-container" style="margin-top: 5px;">
+    <div class="carousel">
+      <div class="swapper"><img src="https://www.advanceecomsolutions.com/wp-content/uploads/2022/08/ecom-ban-img.jpg" alt="Product 1"></div>
+      <div class="swapper"><img src="https://img.freepik.com/free-photo/shopping-bag-cart_23-2148879372.jpg" alt="Product 2"></div>
+      <div class="swapper"><img src="https://www.abitcorp.com/images/bg-banner-service-ecommerce2.jpg" alt="Product 3" ></div>
+      <div class="swapper"><img src="https://www.ask-it.pro/wp-content/uploads/Administration/accueil_slider_01.jpg" alt="Product 4"></div>
+    </div>
+    <button class="carousel-control prev">&lt;</button>
+    <button class="carousel-control next">&gt;</button>
+  </div>
+
+  <div class="row products mt-4">
+    <% for(let product of products) { %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card product-card shadow-sm mx-auto position-relative">
+          <img src="<%= product.img %>" class="card-img-top" alt="item image">
+          <span class="badge rounded-pill bg-light text-dark w-25 position-absolute translate-middle-y rating-badge">
+            <%= product.avgRating %> &star; | <%= product.reviews.length %>
+          </span>
+          <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between align-items-center">
+              <span><%= product.name %></span> 
+              <span class="btn like-btn" product-id="<%= product._id %>">
+                <% if(currentUser && currentUser.wishList.includes(product._id)) { %>
+                  <i class="fas fa-heart"></i>
+                <% } else { %>
+                  <i class="far fa-heart"></i>
+                <% } %>
+              </span>
+            </h5>
+            <p class="card-text text-muted"><%= product.desc %></p>
+            <% if(product.reviews.length) { %>
+              <p class="text-muted"><%= product.reviews.length %> reviews</p>
+            <% } else { %>
+              <p class="text-muted">No reviews</p>
+            <% } %> 
+            <h6 class="card-title">
+              <span class="text-decoration-line-through">Rs.<%= product.price * 2 %></span> 
+              Rs.<%= product.price %> 
+              <span class="text-warning">(50% OFF)</span>
+            </h6>
+            <a href="/products/<%= product._id %>" class="btn btn-primary btn-lg btn-block">View Now</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  
+</section>
+
+<script src="/js/common.js"></script>
+<script src="/js/index.js"></script>
+
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('.carousel');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    const nextButton = document.querySelector('.carousel-control.next');
+    const totalItems = document.querySelectorAll('.carousel-item').length;
+    let currentIndex = 0;
+
+    const updateCarousel = () => {
+      const offset = -currentIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+    };
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateCarousel();
+    });
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateCarousel();
+    });
+  });
+</script> -->

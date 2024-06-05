@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') -%>
+
+
+<div class="row" >
+    <div class="col-md-5 mx-auto">
+        <%- include('../partials/flash')  %> 
+        <div class="card p-3 shadow-sm m-2">
+            <h1 class="display-6"  style="font-weight:600 ;">Login</h1>
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="username"  style="font-weight:500 ;">Username</label>
+                    <input class="form-control" type="text" name="username" id="username" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password"  style="font-weight:500 ;">Password</label>
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-success btn-block btn-small" style="font-weight:600 ;" >Login</button>
+                <p  style="font-weight:500 ;" class="fw-light mt-2">Don't have an account yet ? <a href="/register"  style="font-weight:500 ;text-decoration:none">SignUp</a> </p> 
+            </form>
+        </div>
+    </div>
+    <div style="text-align: center;padding:20px;margin-top: 75px;  bottom:30%;background-color:black; color:azure; font-family: Verdana, Geneva, Tahoma, sans-serif; "><h2>MADE WITH LOVE FROM GAURANG ❤❤</h2> </div>
+</div>
